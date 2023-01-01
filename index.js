@@ -9,6 +9,9 @@ const http = require("http");
 // module for Routing (Ses 12)
 const url = require("url");
 
+//import replaceTemplate module
+const replaceTemplate = require("./modules/replaceTemplate");
+
 // now we can do things like reading files from the file system -> to do so we need a Node Module
 // NodeJS is built around this concept of modules -> all kinds of aditional functionality is stored in a module
 // We do require them into our code and then store it in a variable
@@ -84,21 +87,6 @@ const url = require("url");
 
 // 13. Building a (Very) simple API
 // An API is like an service where we can request data
-
-const replaceTemplate = (temp, product) => {
-  let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
-  output = output.replace(/{%IMAGE%}/g, product.image);
-  output = output.replace(/{%PRICE%}/g, product.price);
-  output = output.replace(/{%FROM%}/g, product.from);
-  output = output.replace(/{%NUTRIENtS%}/g, product.nutrients);
-  output = output.replace(/{%QUANTITY%}/g, product.quantity);
-  output = output.replace(/{%DESCRIPTION%}/g, product.description);
-  output = output.replace(/{%ID%}/g, product.id);
-
-  if (!product.organic)
-    output = output.replace(/{%NOT_ORGANIC%}/g, "not-organic");
-  return output;
-};
 
 const tempOverview = fs.readFileSync(
   `${__dirname}/starter/templates/template-overview.html`,
